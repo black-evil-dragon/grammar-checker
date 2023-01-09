@@ -1,0 +1,50 @@
+.grammar {
+    @include flex-center;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+
+    &__content {
+        position: relative;
+
+        width: 100vw;
+        height: 10vh;
+    }
+
+    .word {
+        position: absolute;
+        width: max-content;
+        left: 50%;
+        right: 50%;
+        transform: translate(-100%, 0);
+        opacity: 0;
+
+        display: flex;
+
+        padding: 1rem 0;
+
+        transition: all .35s ease-in-out;
+
+        &.active {
+            opacity: 1;
+            transform: translate(-50%, 0);
+        }
+
+        &#correct {
+            color: $green-success;
+        }
+
+        &#incorrect {
+            color: $danger;
+        }
+
+        //opacity: 0;
+    }
+
+
+    &__keyboard {
+        width: 75vw;
+    }
+
+}

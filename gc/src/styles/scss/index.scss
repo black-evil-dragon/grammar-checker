@@ -1,0 +1,25 @@
+@import './settings';
+@import './components';
+@import './pages';
+
+
+body,
+html,
+#__next,
+.app,
+.app__content {
+    margin: 0;
+
+    height: 100%;
+    width: 100%;
+
+    overflow: hidden;
+    font-size: 20px;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}

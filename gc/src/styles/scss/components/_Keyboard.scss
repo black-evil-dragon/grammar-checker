@@ -1,0 +1,23 @@
+.keyboard {
+    @include flex-center;
+    flex-wrap: wrap;
+
+    &__button {
+        button {
+            background-color: $navy-dark;
+            border-radius: .55rem;
+
+            color: $white;
+
+            padding: .60rem .75rem;
+            margin: .45rem;
+
+            transition: all .2s ease-in-out;
+
+            &:hover {
+                background-color: $blue-link;
+                transform: scale(1.1);
+            }
+        }
+    }
+}

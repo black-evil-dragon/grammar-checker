@@ -1,22 +1,30 @@
+import type { actionType } from "../../types"
+
 const initialState = {
-    onLoad: false,
-    gradeNumber: '',
-    schoolName: '',
-    timetable: [],
+    examTasks: [],
+    examType: '',
+    examAmount: 0,
+    examActiveTask: null,
 }
 
-const timetableReducer = (state = initialState, action: any) => {
+const examReducer = (state = initialState, action: actionType) => {
     switch (action.type) {
-        case "timetable:get":
+        case "exam:set":
             return {
                 ...state,
-                gradeNumber: action.payload.gradeNumber,
-                schoolName: action.payload.schoolName,
-                timetable: action.payload.timetable,
-                onLoad: true,
+                examTasks: action.payload.examTasks,
+                examType: action.payload.examType,
+                examAmount: action.payload.examAmount,
+                examActiveTask: action.payload.examActiveTask,
             }
 
-        case "timetable:remove":
+        case "exam:set:task":
+            return {
+                ...state,
+                examActiveTask: action.payload.examActiveTask
+            }
+
+        case "exam:remove":
             return initialState
 
         default:
@@ -24,4 +32,4 @@ const timetableReducer = (state = initialState, action: any) => {
     }
 }
 
-export default timetableReducer
+export default examReducer

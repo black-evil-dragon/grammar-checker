@@ -9,6 +9,12 @@ type RequestData = {
 }
 
 const getRandomID = (amount: any, wordsData: any) => {
+    function contains(arr: any, elem: any) {
+        return arr.find((i: any) => {
+            i == elem
+        });
+    }
+
     const firstCircle: any = []
     const secondCircle: any = []
     const result: any = []
@@ -16,7 +22,7 @@ const getRandomID = (amount: any, wordsData: any) => {
     try {
         for (let index = 0; index < amount; index++) {
             const randID = wordsData.idList[Math.floor(Math.random() * wordsData.idList.length)]
-            if (contains(wordsData.idList, randID)) firstCircle.push(randID)
+            if (!contains(firstCircle, randID)) firstCircle.push(randID)
         }
 
         firstCircle.forEach((id: any) => {
@@ -54,17 +60,12 @@ const createExam = (wordsAmount: any) => {
             })
         })
 
-
         if (!wordsID.error) return examWords
         else throw wordsID
 
     } catch (error) {
         return { text: `${error}`, code: 'error-createExam', error }
     }
-}
-
-function contains(arr: any, elem: any) {
-    return arr.find((i: any) => i === elem) != -1;
 }
 
 
@@ -77,8 +78,11 @@ export default function handler(
 
     try {
         result = createExam(req.body.examAmount)
+        if(result.code) throw result
+
+
     } catch (error: any) {
-        result = error
+        result = { status: 500, error }
     }
 
     res.status(200).json(result)
